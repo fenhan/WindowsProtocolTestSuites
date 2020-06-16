@@ -13,7 +13,18 @@
     <Property name="Version" value="2.0" >
       <Description>The version of test suite.</Description>
     </Property>
-  
+
+    <!--Property used for queue-based SUT control adapter-->
+    <Property name="SUTControl.LocalAddress" value="rdpserver.westus2.cloudapp.azure.com" >
+      <Description>Address of this host. e.g. rdpserver.westus2.cloudapp.azure.com</Description>
+    </Property>
+    <Property name="SUTControl.StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=sutcontrolstorage;AccountKey=8OZ4T3YOuSy/NpUZX6S8Po0nRekentqKANbbYyTT1LHRuIFTkC5veFnw+1tZK2e/wQnhiEn/M0cxKtwi0RAkAg==;EndpointSuffix=core.windows.net" >
+      <Description>Storage account connection string.</Description>
+    </Property>
+    <Property name="SUTControl.QueueName" value="sutcontrol" >
+      <Description>Queue Name.</Description>
+    </Property>
+    
     <!--Property used for protocol-based SUT control adapter-->
     <!--IP addresses or host name of SUT control Agent, seperated by ";"-->    
     <Property name="SUTControl.AgentAddress" value="192.168.0.1:4488;192.168.0.1:4489" >
@@ -49,10 +60,11 @@
 
     <!-- SUT Control Adapters-->
     <!-- Basic RDP SUT Control Adapters -->    
-    <Adapter xsi:type="powershell" name="IRdpSutControlAdapter" scriptdir ="." />
-    <!--<Adapter xsi:type="interactive" name="IRdpSutControlAdapter" />-->
+    <!--<Adapter xsi:type="powershell" name="IRdpSutControlAdapter" scriptdir ="." />-->
+    <Adapter xsi:type="interactive" name="IRdpSutControlAdapter" />
     <!--<Adapter xsi:type="managed" name="IRdpSutControlAdapter" adaptertype="Microsoft.Protocols.TestSuites.Rdp.ProtocolBasedRdpSUTControlAdapter"/>-->
-    
+    <!--<Adapter xsi:type="managed" name="IRdpSutControlAdapter" adaptertype="Microsoft.Protocols.TestSuites.Rdp.QueueBasedRdpSUTControlAdapter"/>-->
+
     <!-- RDPEI SUT Control Adapters -->
     <Adapter xsi:type="powershell" name="IRdpeiSUTControlAdapter" scriptdir ="." />
     <!--<Adapter xsi:type="interactive" name="IRdpeiSUTControlAdapter"/>-->
